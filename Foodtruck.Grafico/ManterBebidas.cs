@@ -38,7 +38,7 @@ namespace Foodtruck.Grafico
             }
             else
             {
-                bebida.Tamanho = -1;
+                bebida.Valor = -1;
             }
             bebida.Nome = tbNome.Text;
             Validacao validacao;
