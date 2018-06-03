@@ -50,15 +50,38 @@ namespace Foodtruck.Grafico
 
         private void CarregaDatagrids()
         {
-            dgBebidas.AutoGenerateColumns = false;
-            dgBebidas.DataSource = pedido.Bebidas.ToList();
+                if (PedidoSelecionado != null)
+                {
+                    dgBebidas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    dgBebidas.MultiSelect = false;
+                    dgBebidas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                    dgBebidas.AutoGenerateColumns = false;
+                    dgBebidas.DataSource = PedidoSelecionado.Bebidas.ToList();
 
-            dgLanches.AutoGenerateColumns = false;
-            dgLanches.DataSource = pedido.Lanches.ToList();
+                    dgLanches.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    dgLanches.MultiSelect = false;
+                    dgLanches.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                    dgLanches.AutoGenerateColumns = false;
+                    dgLanches.DataSource = PedidoSelecionado.Lanches.ToList();
+                    CarregaTotal();
+                }
+                else
+                {
+                    dgBebidas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    dgBebidas.MultiSelect = false;
+                    dgBebidas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                    dgBebidas.AutoGenerateColumns = false;
+                    dgBebidas.DataSource = pedido.Bebidas.ToList();
 
-            CarregaTotal();
+                    dgLanches.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    dgLanches.MultiSelect = false;
+                    dgLanches.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                    dgLanches.AutoGenerateColumns = false;
+                    dgLanches.DataSource = pedido.Lanches.ToList();
+
+                    CarregaTotal();
+                }
         }
-
         private void btAdicionaBebida_Click(object sender, EventArgs e)
         {
             Bebida bebidaSelecionada = (Bebida)cbBebidas.SelectedItem;
