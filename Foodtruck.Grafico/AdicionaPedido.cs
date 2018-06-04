@@ -24,6 +24,7 @@ namespace Foodtruck.Grafico
         private void AdicionaPedido_Load(object sender, EventArgs e)
         {
             CarregaComboBoxes();
+            CarregaPedido();
             CarregaDatagrids();
             CarregaTotal();
         }
@@ -37,7 +38,15 @@ namespace Foodtruck.Grafico
         {
             cbClientes.DisplayMember = "Descricao";
             cbClientes.ValueMember = "Id";
-            cbClientes.DataSource = Program.Gerenciador.TodosOsClientes();
+
+        //    if (PedidoSelecionado != null)
+        //    {
+        //        cbClientes.DataSource = PedidoSelecionado.Cliente.Nome.AsEnumerable();
+        //    }
+        //    else
+        //    {
+                cbClientes.DataSource = Program.Gerenciador.TodosOsClientes();
+        //    }
 
             cbLanches.DisplayMember = "Nome";
             cbLanches.ValueMember = "Id";
@@ -79,7 +88,17 @@ namespace Foodtruck.Grafico
             {
                 pedido.Cliente = cbClientes.SelectedItem as Cliente;
                 pedido.DataCompra = DateTime.Now;
-                Validacao validacao = Program.Gerenciador.CadastraPedido(pedido);
+
+                Validacao validacao;
+                if (PedidoSelecionado == null)
+                {
+                    validacao = Program.Gerenciador.CadastraPedido(pedido);
+                }
+                else
+                {
+                    validacao = Program.Gerenciador.AlteraPedido(pedido);
+                }
+
                 if (validacao.Valido)
                 {
                     MessageBox.Show("Pedido cadastrado com sucesso!");
@@ -146,6 +165,22 @@ namespace Foodtruck.Grafico
                     lancheSelecionado = cbLanches.SelectedItem as Lanche;
                     pedido.Lanches.Remove(lancheSelecionado);
                     CarregaDatagrids();
+                }
+            }
+        }
+
+        private void CarregaPedido()
+        {
+            if (PedidoSelecionado != null)
+            {
+                foreach (Bebida bebida in PedidoSelecionado.Bebidas)
+                {
+                    pedido.Bebidas.Add(bebida);
+                }
+             
+                foreach (Lanche lanche in PedidoSelecionado.Lanches)
+                {
+                    pedido.Lanches.Add(lanche);
                 }
             }
         }
