@@ -285,7 +285,52 @@ namespace Foodtruck.Negocio
 
             return validacao;
         }
-        
+
+        public Validacao AlteraPedido(Pedido pedidoAlterado)
+        {
+            Validacao validacao = new Validacao();
+            Pedido pedidoBanco = BuscaPedidoPorId(pedidoAlterado.Id);
+
+            if (string.IsNullOrEmpty(Convert.ToString(pedidoAlterado.DataCompra)))
+            {
+                validacao.Mensagens.Add("datacompra", "O campo data não pode ser nulo ou vazío");
+            }
+
+            if (!(this.banco.Clientes.Where(x => x.Id == pedidoAlterado.Cliente.Id).Any()))
+            {
+                validacao.Mensagens.Add("cliente", "Não existe nenhum cliente cadastrado com esse código idenfiticador");
+            }
+
+            foreach (Lanche lanche in pedidoAlterado.Lanches)
+            {
+                if (!(this.banco.Lanches.Where(x => x.Id == lanche.Id).Any()))
+                {
+                    validacao.Mensagens.Add("lanche", "$Não existe nenhum lanche cadastrado em um dos códigos informados");
+                }
+            }
+
+            foreach (Bebida bebida in pedidoAlterado.Bebidas)
+            {
+                if (!(this.banco.Bebidas.Where(x => x.Id == bebida.Id).Any()))
+                {
+                    validacao.Mensagens.Add("bebida", "$Não existe nenhuma bebida cadastrada em um dos códigos informados");
+                }
+            }
+
+            if (validacao.Valido)
+            {
+                pedidoBanco.Cliente = pedidoBanco.Cliente; //gambiarra
+                pedidoBanco.DataCompra = pedidoAlterado.DataCompra;
+                pedidoBanco.Bebidas = pedidoAlterado.Bebidas;
+                pedidoBanco.Lanches = pedidoAlterado.Lanches;
+                this.banco.SaveChanges();
+            }
+
+
+            return validacao;
+        }
+
+
         public Cliente BuscaClientePorId(long id)
         {
             return this.banco.Clientes.Where(c => c.Id == id).FirstOrDefault();
@@ -296,7 +341,11 @@ namespace Foodtruck.Negocio
         }
         public Lanche BuscaLanchePorId(long id)
         {
-            return this.banco.Lanches.Where(b => b.Id == id).FirstOrDefault();
+            return this.banco.Lanches.Where(l => l.Id == id).FirstOrDefault();
+        }
+        public Pedido BuscaPedidoPorId(long id)
+        {
+            return this.banco.Pedidos.Where(p => p.Id == id).FirstOrDefault();
         }
         public List<Cliente> TodosOsClientes()
         {

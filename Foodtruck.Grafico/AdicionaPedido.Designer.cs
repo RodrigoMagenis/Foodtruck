@@ -41,13 +41,13 @@
             this.Tamanho = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgLanches = new System.Windows.Forms.DataGridView();
+            this.NomeLanche = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ValorLanche = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button3 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.lbTotal = new System.Windows.Forms.Label();
             this.btRemoverBebida = new System.Windows.Forms.Button();
             this.btRemoverLanche = new System.Windows.Forms.Button();
-            this.NomeLanche = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ValorLanche = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgBebidas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgLanches)).BeginInit();
             this.SuspendLayout();
@@ -173,7 +173,7 @@
             this.dgLanches.AllowUserToAddRows = false;
             this.dgLanches.AllowUserToDeleteRows = false;
             this.dgLanches.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.dgLanches.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgLanches.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.NomeLanche,
@@ -185,6 +185,22 @@
             this.dgLanches.RowTemplate.Height = 33;
             this.dgLanches.Size = new System.Drawing.Size(322, 207);
             this.dgLanches.TabIndex = 10;
+            // 
+            // NomeLanche
+            // 
+            this.NomeLanche.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.NomeLanche.DataPropertyName = "Nome";
+            this.NomeLanche.HeaderText = "Nome";
+            this.NomeLanche.Name = "NomeLanche";
+            this.NomeLanche.ReadOnly = true;
+            // 
+            // ValorLanche
+            // 
+            this.ValorLanche.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ValorLanche.DataPropertyName = "Valor";
+            this.ValorLanche.HeaderText = "Valor";
+            this.ValorLanche.Name = "ValorLanche";
+            this.ValorLanche.ReadOnly = true;
             // 
             // button3
             // 
@@ -237,22 +253,6 @@
             this.btRemoverLanche.Text = "-";
             this.btRemoverLanche.UseVisualStyleBackColor = true;
             this.btRemoverLanche.Click += new System.EventHandler(this.btRemoverLanche_Click);
-            // 
-            // NomeLanche
-            // 
-            this.NomeLanche.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.NomeLanche.DataPropertyName = "Nome";
-            this.NomeLanche.HeaderText = "Nome";
-            this.NomeLanche.Name = "NomeLanche";
-            this.NomeLanche.ReadOnly = true;
-            // 
-            // ValorLanche
-            // 
-            this.ValorLanche.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ValorLanche.DataPropertyName = "Valor";
-            this.ValorLanche.HeaderText = "Valor";
-            this.ValorLanche.Name = "ValorLanche";
-            this.ValorLanche.ReadOnly = true;
             // 
             // AdicionaPedido
             // 
