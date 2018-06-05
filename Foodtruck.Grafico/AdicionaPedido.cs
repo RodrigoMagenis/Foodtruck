@@ -15,7 +15,7 @@ namespace Foodtruck.Grafico
     public partial class AdicionaPedido : Form
     {
         Pedido pedido = new Pedido();
-
+        public Pedido PedidoSelecionado { get; set; }
         public AdicionaPedido()
         {
             InitializeComponent();
@@ -26,8 +26,8 @@ namespace Foodtruck.Grafico
             CarregaComboBoxes();
             CarregaDatagrids();
             CarregaTotal();
+            
         }
-
         private void CarregaTotal()
         {
             lbTotal.Text = pedido.ValorTotal.ToString();
@@ -73,26 +73,57 @@ namespace Foodtruck.Grafico
             CarregaDatagrids();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btSalvar_Click(object sender, EventArgs e)
         {
             try
             {
-                pedido.Cliente = cbClientes.SelectedItem as Cliente;
-                pedido.DataCompra = DateTime.Now;
-                Validacao validacao = Program.Gerenciador.CadastraPedido(pedido);
-                if (validacao.Valido)
+                /*( pedido.Cliente = cbClientes.SelectedItem as Cliente;
+                 pedido.DataCompra = DateTime.Now;
+                 Validacao validacao = Program.Gerenciador.CadastraPedido(pedido);
+                 if (validacao.Valido)
+                 {
+                     MessageBox.Show("Pedido cadastrado com sucesso!");
+                 }
+
+                 else
+                 {
+                     String msg = "";
+                     foreach (var mensagem in validacao.Mensagens)
+                     {
+                         msg += mensagem + Environment.NewLine;
+                     }
+                     MessageBox.Show(msg, "Erro");
+                 }*/
+                if (PedidoSelecionado == null)
                 {
-                    MessageBox.Show("Pedido cadastrado com sucesso!");
+                    pedido.Cliente = cbClientes.SelectedItem as Cliente;
+                    pedido.DataCompra = DateTime.Now;
+                }
+
+                Validacao validacao;
+                if (PedidoSelecionado == null)
+                {
+                    validacao = Program.Gerenciador.CadastraPedido(pedido);
                 }
                 else
                 {
-                    String msg = "";
-                    foreach (var mensagem in validacao.Mensagens)
-                    {
-                        msg += mensagem + Environment.NewLine;
-                    }
-                    MessageBox.Show(msg, "Erro");
+                    validacao = Program.Gerenciador.AlterarPedido(pedido);
                 }
+
+                if (!validacao.Valido)
+                {
+                    String mensagemValidacao = "";
+                    foreach (var msg in validacao.Mensagens)
+                    {
+                        mensagemValidacao += msg + Environment.NewLine;
+                    }
+                    MessageBox.Show(mensagemValidacao, "Erro");
+                }
+                else
+                {
+                    MessageBox.Show("Pedido cadastrado com sucesso");
+                }
+                this.Close();
             }
             catch (Exception ex)
             {

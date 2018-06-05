@@ -20,6 +20,7 @@ namespace Foodtruck.Negocio
             banco.SaveChanges();
             return validacao;
         }
+
         public Validacao RemoverLanche(Lanche lanche)
         {
             Validacao validacao = new Validacao();
@@ -34,6 +35,14 @@ namespace Foodtruck.Negocio
             banco.SaveChanges();
             return validacao;
         }
+        public Validacao RemoverPedido(Pedido pedido)
+        {
+            Validacao validacao = new Validacao();
+            banco.Pedidos.Remove(pedido);
+            banco.SaveChanges();
+            return validacao;
+        }
+
         public Validacao AlterarCliente(Cliente clienteAlterado)
         {
 
@@ -184,7 +193,7 @@ namespace Foodtruck.Negocio
             }
             return validacao;
         }
-        public Validacao AlteraLanches(Lanche lancheAlterado)
+        public Validacao AlterarLanches(Lanche lancheAlterado)
         {
            
             Validacao validacao = new Validacao();
@@ -274,10 +283,57 @@ namespace Foodtruck.Negocio
 
             return validacao;
         }
+        public Validacao AlterarPedido(Pedido PedidoAlterado)
+        {
+            Validacao validacao = new Validacao();
+            Pedido PedidoBanco = BuscaPedidoPorId(PedidoAlterado.Id);
+            if (string.IsNullOrEmpty(Convert.ToString(PedidoAlterado.DataCompra)))
+            {
+                validacao.Mensagens.Add("datacompra", "O campo data não pode ser nulo ou vazío");
+            }
+
+            if (!(this.banco.Clientes.Where(x => x.Id == PedidoAlterado.Cliente.Id).Any()))
+            {
+                validacao.Mensagens.Add("cliente", "Não existe nenhum cliente cadastrado com esse código idenfiticador");
+            }
+
+            foreach (Lanche lanche in PedidoAlterado.Lanches)
+            {
+                if (!(this.banco.Lanches.Where(x => x.Id == lanche.Id).Any()))
+                {
+                    validacao.Mensagens.Add("lanche", "$Não existe nenhum lanche cadastrado em um dos códigos informados");
+                }
+            }
+
+            foreach (Bebida bebida in PedidoAlterado.Bebidas)
+            {
+                if (!(this.banco.Bebidas.Where(x => x.Id == bebida.Id).Any()))
+                {
+                    validacao.Mensagens.Add("bebida", "$Não existe nenhuma bebida cadastrada em um dos códigos informados");
+                }
+            }
+            if (validacao.Valido)
+            {
+                PedidoBanco.DataCompra = PedidoAlterado.DataCompra;
+                PedidoBanco.Lanches = PedidoAlterado.Lanches;
+                PedidoBanco.Bebidas = PedidoAlterado.Bebidas;
+                PedidoBanco.Cliente.Nome = PedidoAlterado.Cliente.Nome;
+                PedidoBanco.Cliente.Id = PedidoAlterado.Cliente.Id;
+                this.banco.Pedidos.Add(PedidoAlterado);
+                this.banco.SaveChanges();
+            }
         
+            this.banco.SaveChanges();
+
+            return validacao;
+        }
         public Cliente BuscaClientePorId(long id)
         {
             return this.banco.Clientes.Where(c => c.Id == id).FirstOrDefault();
+        }
+        public Pedido BuscaPedidoPorId(long id)
+        {
+            return this.banco.Pedidos.Where(p => p.Id == id).FirstOrDefault();
         }
         public Bebida BuscaBebidaPorId(long id)
         {

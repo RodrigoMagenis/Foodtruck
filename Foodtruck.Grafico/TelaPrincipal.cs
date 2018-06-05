@@ -130,14 +130,14 @@ namespace Foodtruck.Grafico
 
         }
 
-        private void lanchesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LanchesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TelaListaLanches tela = new TelaListaLanches();
             tela.MdiParent = this;
             tela.Show();
         }
 
-        private void pedidosToolStripMenuItem_Click(object sender, EventArgs e)
+        private void PedidosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TelaListaPedidos tela = new TelaListaPedidos();
             tela.MdiParent = this;

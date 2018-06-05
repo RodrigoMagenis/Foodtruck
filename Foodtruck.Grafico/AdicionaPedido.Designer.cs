@@ -190,12 +190,12 @@
             // 
             this.button3.Location = new System.Drawing.Point(478, 298);
             this.button3.Margin = new System.Windows.Forms.Padding(2);
-            this.button3.Name = "button3";
+            this.button3.Name = "btSalvar";
             this.button3.Size = new System.Drawing.Size(107, 30);
             this.button3.TabIndex = 11;
             this.button3.Text = "Salvar";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.Click += new System.EventHandler(this.btSalvar_Click);
             // 
             // label4
             // 

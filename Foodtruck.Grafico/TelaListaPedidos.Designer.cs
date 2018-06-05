@@ -35,6 +35,7 @@
             this.TotalValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btAlterar = new System.Windows.Forms.Button();
             this.btRemover = new System.Windows.Forms.Button();
+
             ((System.ComponentModel.ISupportInitialize)(this.dgPedidos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,46 +49,14 @@
             this.dgPedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgPedidos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
-            this.Data,
             this.Cliente,
+            this.Data,
             this.TotalValor});
             this.dgPedidos.Location = new System.Drawing.Point(12, 81);
             this.dgPedidos.Name = "dgPedidos";
             this.dgPedidos.ReadOnly = true;
             this.dgPedidos.Size = new System.Drawing.Size(776, 357);
             this.dgPedidos.TabIndex = 0;
-            // 
-            // Id
-            // 
-            this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "ID";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            // 
-            // Data
-            // 
-            this.Data.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Data.DataPropertyName = "DataCompra";
-            this.Data.HeaderText = "data";
-            this.Data.Name = "Data";
-            this.Data.ReadOnly = true;
-            // 
-            // Cliente
-            // 
-            this.Cliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Cliente.DataPropertyName = "NomeCliente";
-            this.Cliente.HeaderText = "cliente";
-            this.Cliente.Name = "Cliente";
-            this.Cliente.ReadOnly = true;
-            // 
-            // TotalValor
-            // 
-            this.TotalValor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.TotalValor.DataPropertyName = "ValorTotal";
-            this.TotalValor.HeaderText = "Valor Total";
-            this.TotalValor.Name = "TotalValor";
-            this.TotalValor.ReadOnly = true;
             // 
             // btAlterar
             // 
@@ -111,6 +80,38 @@
             this.btRemover.UseVisualStyleBackColor = true;
             this.btRemover.Click += new System.EventHandler(this.btRemover_Click);
             // 
+            // Id
+            // 
+            this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "ID";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            // 
+            // Cliente
+            // 
+            this.Cliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Cliente.DataPropertyName = "NomeCliente";
+            this.Cliente.HeaderText = "cliente";
+            this.Cliente.Name = "Cliente";
+            this.Cliente.ReadOnly = true;
+            // 
+            // Data
+            // 
+            this.Data.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Data.DataPropertyName = "DataCompra";
+            this.Data.HeaderText = "data";
+            this.Data.Name = "Data";
+            this.Data.ReadOnly = true;
+            // 
+            // TotalValor
+            // 
+            this.TotalValor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TotalValor.DataPropertyName = "ValorTotal";
+            this.TotalValor.HeaderText = "Valor Total";
+            this.TotalValor.Name = "TotalValor";
+            this.TotalValor.ReadOnly = true;
+            // 
             // TelaListaPedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -122,7 +123,6 @@
             this.Name = "TelaListaPedidos";
             this.Text = "ListarPedido";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.TelaListaPedidos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgPedidos)).EndInit();
             this.ResumeLayout(false);
 
@@ -131,11 +131,11 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgPedidos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Data;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalValor;
         private System.Windows.Forms.Button btAlterar;
         private System.Windows.Forms.Button btRemover;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Data;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalValor;
     }
 }

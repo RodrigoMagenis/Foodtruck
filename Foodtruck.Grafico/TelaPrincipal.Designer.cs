@@ -91,7 +91,7 @@
             this.pedidosToolStripMenuItem.Name = "pedidosToolStripMenuItem";
             this.pedidosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.pedidosToolStripMenuItem.Text = "Pedidos";
-            this.pedidosToolStripMenuItem.Click += new System.EventHandler(this.pedidosToolStripMenuItem_Click);
+            this.pedidosToolStripMenuItem.Click += new System.EventHandler(this.PedidosToolStripMenuItem_Click);
             // 
             // novoPedidoToolStripMenuItem
             // 
@@ -112,7 +112,7 @@
             this.lanchesToolStripMenuItem.Name = "lanchesToolStripMenuItem";
             this.lanchesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.lanchesToolStripMenuItem.Text = "Lanches";
-            this.lanchesToolStripMenuItem.Click += new System.EventHandler(this.lanchesToolStripMenuItem_Click);
+            this.lanchesToolStripMenuItem.Click += new System.EventHandler(this.LanchesToolStripMenuItem_Click);
             // 
             // windowsMenu
             // 
