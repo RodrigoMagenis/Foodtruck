@@ -128,22 +128,10 @@ namespace Foodtruck.Negocio
             {
                 validacao.Mensagens.Add("tamanho", "O campo tamanho não pode ser nulo ou vazio");
             }
-
-            if (this.banco.Bebidas.Where(b => b.Tamanho == bebidaAlterada.Tamanho).Any() && validacao.Mensagens.Count == 0 || bebidaAlterada.Tamanho < 0 && validacao.Mensagens.Count == 0)
-            {
-                validacao.Mensagens.Add("tamanho", "O campo tamanho deve ser constituido de apenas números positivos");
-            }
-
             if (string.IsNullOrEmpty(Convert.ToString(bebidaAlterada.Valor)))
             {
                 validacao.Mensagens.Add("valor", "O campo valor não pode ser nulo ou vazio");
             }
-
-            if (this.banco.Bebidas.Where(b => b.Valor == bebidaAlterada.Valor).Any() && validacao.Mensagens.Count == 0 || bebidaAlterada.Valor < 0 && validacao.Mensagens.Count == 0)
-            {
-                validacao.Mensagens.Add("valor", "O campo valor deve ser constituido de apenas números positivos");
-            }
-
             if (validacao.Valido)
             {
                 bebidaBanco.Nome = bebidaAlterada.Nome;
@@ -319,7 +307,7 @@ namespace Foodtruck.Negocio
 
             if (validacao.Valido)
             {
-                pedidoBanco.Cliente = pedidoBanco.Cliente; //gambiarra
+              //  pedidoBanco.Cliente = pedidoBanco.Cliente; //gambiarra
                 pedidoBanco.DataCompra = pedidoAlterado.DataCompra;
                 pedidoBanco.Bebidas = pedidoAlterado.Bebidas;
                 pedidoBanco.Lanches = pedidoAlterado.Lanches;

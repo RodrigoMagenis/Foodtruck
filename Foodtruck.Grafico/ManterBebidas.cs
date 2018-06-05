@@ -48,6 +48,7 @@ namespace Foodtruck.Grafico
             }
             else
             {
+                bebida.Id = BebidaSelecionada.Id;
                   validacao = Program.Gerenciador.AlterarBebida(bebida);
                
             }

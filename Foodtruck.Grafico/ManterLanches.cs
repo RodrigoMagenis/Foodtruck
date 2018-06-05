@@ -44,6 +44,7 @@ namespace Foodtruck.Grafico
             }
             else
             {
+                lanche.Id = LancheSelecionado.Id;
                 validacao = Program.Gerenciador.AlteraLanches(lanche);
 
             }

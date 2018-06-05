@@ -96,12 +96,14 @@ namespace Foodtruck.Grafico
                 }
                 else
                 {
+                    pedido.Id = PedidoSelecionado.Id;
                     validacao = Program.Gerenciador.AlteraPedido(pedido);
                 }
 
                 if (validacao.Valido)
                 {
                     MessageBox.Show("Pedido cadastrado com sucesso!");
+                    this.Close();
                 }
                 else
                 {
@@ -115,7 +117,8 @@ namespace Foodtruck.Grafico
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocorreu um erro grave, fale com o administrador");
+               
+                MessageBox.Show(ex.Message);
             }
 
         }
