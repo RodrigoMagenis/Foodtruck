@@ -36,8 +36,13 @@ namespace Foodtruck.Grafico
             {
                 lanche.Valor = decimalConvertido;
             }
-                lanche.Nome = tbNome.Text;
-                Validacao validacao;
+            else
+            {
+                lanche.Id = -1;
+            }
+
+            lanche.Nome = tbNome.Text;
+            Validacao validacao;
             if (LancheSelecionado == null)
             {
                 validacao = Program.Gerenciador.CadastraLanche(lanche);

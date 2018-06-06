@@ -128,10 +128,22 @@ namespace Foodtruck.Negocio
             {
                 validacao.Mensagens.Add("tamanho", "O campo tamanho não pode ser nulo ou vazio");
             }
+
+            if (this.banco.Bebidas.Where(b => b.Tamanho == bebidaAlterada.Tamanho).Any() && validacao.Mensagens.Count == 0 || bebidaAlterada.Tamanho < 0 && validacao.Mensagens.Count == 0)
+            {
+                validacao.Mensagens.Add("tamanho", "O campo tamanho deve ser constituido de apenas números positivos");
+            }
+
             if (string.IsNullOrEmpty(Convert.ToString(bebidaAlterada.Valor)))
             {
                 validacao.Mensagens.Add("valor", "O campo valor não pode ser nulo ou vazio");
             }
+
+            if (this.banco.Bebidas.Where(b => b.Valor == bebidaAlterada.Valor).Any() && validacao.Mensagens.Count == 0 || bebidaAlterada.Valor < 0 && validacao.Mensagens.Count == 0)
+            {
+                validacao.Mensagens.Add("valor", "O campo valor deve ser constituido de apenas números positivos");
+            }
+
             if (validacao.Valido)
             {
                 bebidaBanco.Nome = bebidaAlterada.Nome;
@@ -199,6 +211,11 @@ namespace Foodtruck.Negocio
                 validacao.Mensagens.Add("valor", "O campo valor não pode ser nulo ou vazio");
             }
 
+            if (this.banco.Lanches.Where(l => l.Valor == lancheAlterado.Valor).Any() && validacao.Mensagens.Count == 0 || lancheAlterado.Valor < 0 && validacao.Mensagens.Count == 0)
+            {
+                validacao.Mensagens.Add("valor", "O campo valor deve ser composto de apenas números positivos");
+            }
+
             if (validacao.Valido)
             {
                 lancheBanco.Nome = lancheAlterado.Nome;
@@ -224,6 +241,10 @@ namespace Foodtruck.Negocio
             if (string.IsNullOrEmpty(Convert.ToString(lancheCadastrado.Valor)))
             {
                 validacao.Mensagens.Add("valor", "O campo valor não pode ser nulo ou vazio");
+            }
+            if (this.banco.Lanches.Where(l => l.Valor == lancheCadastrado.Valor).Any() && validacao.Mensagens.Count == 0 || lancheCadastrado.Valor < 0 && validacao.Mensagens.Count == 0)
+            {
+                validacao.Mensagens.Add("valor", "O campo valor deve ser composto de apenas números positivos");
             }
 
             if (validacao.Valido)
